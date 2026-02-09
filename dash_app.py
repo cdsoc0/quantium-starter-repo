@@ -8,6 +8,7 @@ sales = []
 dates = []
 regions = []
 
+# Load data
 with open("processed_data.csv" , 'r', newline='') as f:
     reader = csv.DictReader(f)
     for row in reader:
@@ -21,10 +22,11 @@ df = pd.DataFrame({
     "Region": regions
 })
 
+# Setup visuals.
 fig = px.line(df, x="Date", y="Sales", color="Region")
 
 app.layout = d.html.Div(children=[
-    d.html.H1(children="Sales over time"),
+    d.html.H1(children="Pink Morsel sales over time"),
     d.dcc.Graph(id="sales-graph", figure=fig)
 ])
 
